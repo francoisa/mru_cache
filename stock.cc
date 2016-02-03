@@ -1,32 +1,26 @@
-#include "circle.h"
-#include <sstream>
+#include "stock.h"
 
-Circle::Circle(const Circle& c) {
+Stock::Stock(const std::string& sym, 
+	     const std::map<std::string, std::string>& s_vals, 
+	     const std::map<std::string, int>& i_vals, 
+	     const std::map<std::string, double>& d_vals) : _symbol(sym), str_vals(s_vals), int_vals(i_vals), dbl_vals(d_vals) {
 }
 
-Circle::Circle(const Point& p, int r) : point(p), radius{r} {
-}
-
-double Circle::area() const {
-  static const double pi = 3.1415927;
-  double a = 2*radius*pi;
-  return a;
-}
-
-Point Circle::center() const {
-  return point;
-}
-
-void Circle::move(Point to) {
-}
-
-void Circle::draw() const {
+double Stock::pe_ratio() const {
+  double pe = -1.0;
+  return pe;
 }
  
-void Circle::rotate(int angle) {
+double Stock::mkt_value() const {
+  double mv = -1.0;
+  return mv;
 }
- 
-void Circle::print(std::ostream& o) const {
-  o << "circle centered at " << point 
-    << " with radius " << radius;
+
+std::string  Stock::symbol() const {
+  return _symbol;
+}
+
+std::ostream& operator <<(std::ostream& o, Stock& s) {
+  o << "{ symbol:" << s._symbol << " }";
+  return o;
 }

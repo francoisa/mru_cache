@@ -1,23 +1,27 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
-#include "shape.h"
+#ifndef STOCK_H
+#define STOCK_H
+#include <iostream>
+#include <map>
 
-class Circle : public Shape {
+class Stock {
  public:
-  Circle(const Point& p, int r);
-  Circle(const Circle& c) = default;
-  Circle& operator=(const Circle& c) = default;
-  Circle(Circle&& c) = default;
-  Circle& operator=(Circle&& c) = default;
-  double area() const;
-  Point center() const;
-  void move(Point to);
-  void draw() const;
-  void rotate(int angle);
-  ~Circle() {}
-  void print(std::ostream& o) const;
+  Stock(const Stock& s) = default;
+  Stock& operator=(const Stock& s) = default;
+  Stock(Stock&& s) = default;
+  Stock& operator=(Stock&& s) = default;
+  Stock(const std::string& symbol, 
+	const std::map<std::string, std::string>& str_vals, 
+	const std::map<std::string, int>& int_vals, 
+	const std::map<std::string, double>& dbl_vals);
+  std::string symbol() const;
+  double pe_ratio() const;
+  double mkt_value() const;
+  ~Stock() {}
+  friend std::ostream& operator <<(std::ostream& o, Stock& s);
  private:
-  Point point;
-  int radius;
+  std::string _symbol;
+  std::map<std::string, std::string> str_vals;
+  std::map<std::string, int> int_vals;
+  std::map<std::string, double> dbl_vals;
 };
 #endif

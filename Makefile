@@ -12,7 +12,7 @@ main.o:  stock.h main.cc
 	$(CC) $(CFLAGS) main.cc
 
 stock.o: stock.h stock.cc 
-	$(CC) $(CFLAGS) $(TGT).cc
+	$(CC) $(CFLAGS) stock.cc
 
 clean:
 	rm -f *.o *~ $(TGT)
