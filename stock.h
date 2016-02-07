@@ -5,6 +5,7 @@
 
 class Stock {
  public:
+  Stock() = default;
   Stock(const Stock& s) = default;
   Stock& operator=(const Stock& s) = default;
   Stock(Stock&& s) = default;
@@ -17,7 +18,7 @@ class Stock {
   double pe_ratio() const;
   double mkt_value() const;
   ~Stock() {}
-  friend std::ostream& operator <<(std::ostream& o, Stock& s);
+  friend std::ostream& operator <<(std::ostream& o, const Stock& s);
  private:
   std::string _symbol;
   std::map<std::string, std::string> str_vals;

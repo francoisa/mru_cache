@@ -1,5 +1,5 @@
 TGT = stocks
-OBJS = stock.o main.o
+OBJS = cache.o stock.o main.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -std=c++0x -c $(DEBUG)
@@ -13,6 +13,9 @@ main.o:  stock.h main.cc
 
 stock.o: stock.h stock.cc 
 	$(CC) $(CFLAGS) stock.cc
+
+cache.o: cache.h stock.h cache.cc 
+	$(CC) $(CFLAGS) cache.cc
 
 clean:
 	rm -f *.o *~ $(TGT)

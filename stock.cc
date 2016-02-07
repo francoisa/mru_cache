@@ -20,7 +20,17 @@ std::string  Stock::symbol() const {
   return _symbol;
 }
 
-std::ostream& operator <<(std::ostream& o, Stock& s) {
-  o << "{ symbol:" << s._symbol << " }";
+std::ostream& operator <<(std::ostream& o, const Stock& s) {
+  o << "{ symbol:" << s._symbol;
+  for (auto& m : s.str_vals) {
+    o << ", " << m.first << ":" << "'" << m.second << "'";
+  }
+  for (auto& m : s.int_vals) {
+    o << ", " << m.first << ":" << m.second;
+  }
+  for (auto& m : s.dbl_vals) {
+    o << ", " << m.first << ":" << m.second;
+  }
+  o << " }";
   return o;
 }
