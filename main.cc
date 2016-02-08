@@ -1,9 +1,8 @@
-#include <fstream>
 #include <iostream>
 #include "stock.h"
 #include "cache.h"
 
-void add_stocks(Cache& c) {
+void _add_stocks(Cache& c) {
   std::map<std::string, std::string> str_vals;
   std::map<std::string, int> int_vals;
   std::map<std::string, double> dbl_vals;
@@ -35,10 +34,19 @@ void add_stocks(Cache& c) {
 
 int main(int argc, char* argv[]) {
   Cache c;
-  add_stocks(c);
-  std::cout << "Stock " 
-	    << c.get("GOOG") 
+  Stock s;
+  std::string sym;
+  std::cout << "Enter a stock symbol: ";
+  while (std::cin >> sym) {
+    if (c.get(sym, s)) {
+      std::cout << "Stock " 
+	    << s 
 	    << std::endl;
-
+    }
+    else {
+      std::cout << "Symbol '" << sym << "' not found." << std::endl;
+    }
+    std::cout << "Enter a stock symbol: ";
+  }
   return 0;
 }
